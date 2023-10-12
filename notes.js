@@ -16,6 +16,18 @@ const addNote = (title, body) => {
   }
 };
 
+const remove = (title) => {
+  try {
+    const notes = loadNotes();
+    const note = notes.filter((note) => note.title === title);
+    if (!!note) throw e;
+    saveNote(notes.filter((note) => note.title !== title));
+    console.log(chalk.bgGreenBright("remove note with title: ", title));
+  } catch (e) {
+    console.log(chalk.bgRed("not found note with title: ", title));
+  }
+};
+
 const saveNote = (notes) => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
@@ -34,4 +46,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { addNote, getNotes };
+module.exports = { addNote, getNotes, remove };

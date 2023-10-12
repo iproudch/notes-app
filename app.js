@@ -5,8 +5,6 @@ const yargs = require("yargs");
 // fs.writeFileSync("hello.txt", "Hello from Node.js");
 // fs.appendFileSync("hello.txt", " learning day 1");
 
-// console.log(getNotesFn());
-
 // console.log(chalk.bgGreenBright("Start app with nodemon Success!"));
 
 yargs.command({
@@ -20,7 +18,7 @@ yargs.command({
     },
     body: {
       describe: "Add title body",
-      demandOption: true,
+      // demandOption: true,
       type: "string",
     },
   },
@@ -32,8 +30,8 @@ yargs.command({
 yargs.command({
   command: "remove",
   description: "Remove notes",
-  handler: function () {
-    console.log("Removing notes!");
+  handler: function (argv) {
+    notes.remove(argv.title);
   },
 });
 
